@@ -110,14 +110,13 @@ Verification includes:
 ## Folder Structure
 
 ```
-UART-Configurable-Baud/
+UART/
 │
-├── rtl/
-├── tb/
-├── sim/
-├── quartus/
 ├── docs/
-├── images/
+├── tb/
+├── waveforms/
+├── rtl/
+├── LICENSE
 └── README.md
 ```
 
