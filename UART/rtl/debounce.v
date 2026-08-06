@@ -22,8 +22,8 @@ module debounce #(parameter DEBOUNCE_TIME = 500000)(clk, reset, key_pressed, key
           counter <= 0;
           debounced <= 0;
         end 
-        else begin
-          if(counter >= DEBOUNCE_TIME-1 && !debounced) begin
+        else if(!debounced) begin
+          if(counter >= DEBOUNCE_TIME-1) begin
             key_out <= key;
             key_valid <= 1;
             debounced <= 1;
