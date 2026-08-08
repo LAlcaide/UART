@@ -1,10 +1,10 @@
-module debounce #(parameter DEBOUNCE_TIME = 500000)(clk, reset, key_pressed, key_valid, key, key_out);
-  input clk, reset, key_pressed;
-  input [3:0] key;
-  
-  output reg key_valid;
-  output reg [3:0] key_out;
-  
+`default_nettype none
+module debounce #(parameter DEBOUNCE_TIME = 500000)(
+input wire clk, reset, key_pressed,
+input wire [3:0] key,
+output reg key_valid,
+output reg [3:0] key_out
+);
   reg [3:0] last_key;
   reg [18:0] counter;
   reg debounced;   
