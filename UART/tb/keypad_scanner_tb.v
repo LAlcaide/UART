@@ -10,7 +10,7 @@ module keypad_scanner_tb;
     
     integer i;
 
-    keypad_scanner DUT (
+    keypad_scanner #(.settle_cycles(5)) DUT (
         .clk(clk),
         .reset(reset),
         .R(R),
@@ -39,7 +39,7 @@ module keypad_scanner_tb;
         repeat (50) @(posedge clk);
 
         // Press key '5' (Column 1, Row 1)
-        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/20; i = i+1) begin
+        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
           wait(C == 4'b1101);
           @(posedge clk);
           R = 4'b1101; 
@@ -49,7 +49,7 @@ module keypad_scanner_tb;
         repeat (50) @(posedge clk);
         
         // Press key '5' again (Column 1, Row 1)
-        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/20; i = i+1) begin
+        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
           wait(C == 4'b1101);
           @(posedge clk);
           R = 4'b1101; 
@@ -59,7 +59,7 @@ module keypad_scanner_tb;
         repeat (50) @(posedge clk);
 
         // Press key '9' (Column 2, Row 2)
-        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/20; i = i+1) begin
+        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
           wait(C == 4'b1011);
           @(posedge clk);
           R = 4'b1011; 
@@ -69,7 +69,7 @@ module keypad_scanner_tb;
         repeat (50) @(posedge clk);
 
         // Press key 'D' (Column 3, Row 3)
-        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/20; i = i+1) begin
+        for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
           wait(C == 4'b0111);
           @(posedge clk);
           R = 4'b0111; 
