@@ -5,6 +5,7 @@ input wire [3:0] key,
 output reg key_valid,
 output reg [3:0] key_out
 );
+  
   reg [3:0] last_key;
   reg [18:0] counter;
   reg debounced;   
