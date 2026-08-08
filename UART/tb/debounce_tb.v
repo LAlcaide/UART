@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-
+`default_nettype none
 module debounce_tb;
 
     reg clk;
