@@ -14,8 +14,8 @@ module debounce_tb;
         .clk(clk),
         .reset(reset),
         .key_pressed(key_pressed),
-        .key_valid(key_valid),
         .key(key),
+        .key_valid(key_valid),
         .key_out(key_out)
     );
 
