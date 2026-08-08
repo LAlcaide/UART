@@ -10,6 +10,9 @@ output reg [2:0] baud_value
     reg [2:0] digit_count;
     
     integer i;
+
+    localparam KEY_BACKSPACE = 4'd10;
+    localparam KEY_ENTER     = 4'd11;
     
     always @(posedge clk) begin
       error<=0;
@@ -23,11 +26,11 @@ output reg [2:0] baud_value
           digits[digit_count]<=key;
           digit_count <= digit_count + 1;
         end
-        else if(key==10 && digit_count>0) begin
+          else if(key==KEY_BACKSPACE && digit_count>0) begin
           digits[digit_count-1]<=0;
           digit_count <= digit_count - 1;
         end
-        else if(key==11) begin
+          else if(key==KEY_ENTER) begin
           if(digit_count==4 && digits[0]==9 && digits[1]==6 && digits[2]==0 && digits[3]==0)
             baud_value  <= 3'd0;
           else if(digit_count==5 && digits[0]==1 && digits[1]==9 && digits[2]==2 && digits[3]==0 && digits[4] == 0)
