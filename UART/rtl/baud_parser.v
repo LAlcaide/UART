@@ -13,6 +13,12 @@ output reg [2:0] baud_value
 
     localparam KEY_BACKSPACE = 4'd10;
     localparam KEY_ENTER = 4'd11;
+
+    localparam BAUD_9600   = 3'd0;
+    localparam BAUD_19200  = 3'd1;
+    localparam BAUD_38400  = 3'd2;
+    localparam BAUD_57600  = 3'd3;
+    localparam BAUD_115200 = 3'd4;
     
     always @(posedge clk) begin
       error<=0;
@@ -32,15 +38,15 @@ output reg [2:0] baud_value
         end
           else if(key==KEY_ENTER) begin
           if(digit_count==4 && digits[0]==9 && digits[1]==6 && digits[2]==0 && digits[3]==0)
-            baud_value  <= 3'd0;
+            baud_value  <= BAUD_9600;
           else if(digit_count==5 && digits[0]==1 && digits[1]==9 && digits[2]==2 && digits[3]==0 && digits[4] == 0)
-            baud_value  <= 3'd1;
+            baud_value  <= BAUD_19200;
           else if(digit_count==5 && digits[0]==3 && digits[1]==8 && digits[2]==4 && digits[3]==0 && digits[4] == 0)
-            baud_value  <= 3'd2;
+            baud_value  <= BAUD_38400;
           else if(digit_count==5 && digits[0]==5 && digits[1]==7 && digits[2]==6 && digits[3]==0 && digits[4] == 0)
-            baud_value  <= 3'd3;
+            baud_value  <= BAUD_57600;
           else if(digit_count==6 && digits[0]==1 && digits[1]==1 && digits[2]==5 && digits[3]==2 && digits[4] == 0 && digits[5] == 0)
-            baud_value  <= 3'd4;
+            baud_value  <= BAUD_1152400;
           else
             error<=1;
           for(i = 0; i < digit_count; i = i + 1)
