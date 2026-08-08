@@ -96,7 +96,7 @@ output wire [3:0] key
         2'd3: begin 
           C <= 4'b1110; 
           col <= 0;
-          key_pressed<=key_held;
+          key_pressed<=key_held | row_active;
           key_held<=0; 
         end
       endcase
