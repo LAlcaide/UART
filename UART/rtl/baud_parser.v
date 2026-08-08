@@ -46,7 +46,7 @@ output reg [2:0] baud_value
           else if(digit_count==5 && digits[0]==5 && digits[1]==7 && digits[2]==6 && digits[3]==0 && digits[4] == 0)
             baud_value  <= BAUD_57600;
           else if(digit_count==6 && digits[0]==1 && digits[1]==1 && digits[2]==5 && digits[3]==2 && digits[4] == 0 && digits[5] == 0)
-            baud_value  <= BAUD_1152400;
+            baud_value  <= BAUD_115200;
           else
             error<=1;
           for(i = 0; i < digit_count; i = i + 1)
