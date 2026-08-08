@@ -12,7 +12,7 @@ output reg [2:0] baud_value
     integer i;
 
     localparam KEY_BACKSPACE = 4'd10;
-    localparam KEY_ENTER     = 4'd11;
+    localparam KEY_ENTER = 4'd11;
     
     always @(posedge clk) begin
       error<=0;
