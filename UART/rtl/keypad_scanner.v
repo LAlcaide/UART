@@ -1,5 +1,5 @@
 `default_nettype none
-module keypad_scanner(
+module keypad_scanner #(parameter settle_cycles = 20)(
 input wire clk, reset,
 input wire [3:0] R,
 output reg [3:0] C,
@@ -12,8 +12,6 @@ output wire [3:0] key
   reg [4:0] settle_counter;
   reg [1:0] col, row;
   reg key_pressed, sampling, row_active, key_held;
-  
-  localparam settle_cycles = 20;
   
   debounce DEBOUNCE_INST(
     .clk(clk), 
@@ -117,5 +115,6 @@ output wire [3:0] key
     endcase
   end
 endmodule
+
 
 
