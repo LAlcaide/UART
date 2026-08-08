@@ -13,8 +13,11 @@ output reg [2:0] baud_value
     
     always @(posedge clk) begin
       error<=0;
-      if(reset)
-        {digit_count, baud_value} <= 0;
+      if(reset) begin
+         {digit_count, baud_value} <= 0;
+         for(i = 0; i < 6; i = i + 1)
+            digits[i] <= 0;
+      end
       else if (key_valid) begin
         if(key<=9 && digit_count < 6) begin
           digits[digit_count]<=key;
