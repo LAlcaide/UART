@@ -70,7 +70,7 @@ The receiver employs **16× oversampling** with start-bit confirmation for robus
 # System Architecture
 
 ```text
-                   uart_top
+                           uart_top
                               |
       +------------+----------+----------+------------+------------+
       |            |          |          |            |            |
