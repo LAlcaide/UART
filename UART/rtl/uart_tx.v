@@ -45,7 +45,7 @@ module uart_tx(
               state<=SENDING_DATA;
             end
             else
-              tick_count<=tick_count + 1;
+              tick_count<=tick_count + 4'd1;
           end
         end
         SENDING_DATA: begin
@@ -57,12 +57,12 @@ module uart_tx(
                 state<=STOP;
               end
               else begin
-                bit_index <= bit_index + 1;
+                bit_index <= bit_index + 3'd1;
                 tx<=data_latched[bit_index + 1];
               end 
             end
             else
-              tick_count<=tick_count + 1;
+              tick_count<=tick_count + 4'd1;
           end
         end
         STOP: begin
@@ -73,7 +73,7 @@ module uart_tx(
               tx_busy    <= 0;
             end
             else
-              tick_count <= tick_count + 1;
+              tick_count <= tick_count + 4'd1;
           end
         end
       endcase
