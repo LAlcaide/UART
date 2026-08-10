@@ -53,7 +53,7 @@ module uart_rx(
                                 state<=IDLE;
                         end
                         else
-                            tick_count<=tick_count + 1;
+                            tick_count<=tick_count + 4'd1;
                     end
                 end
 
@@ -65,10 +65,10 @@ module uart_rx(
                             if(bit_index == 7)
                                 state<=STOP;
                             else
-                                bit_index<=bit_index + 1;
+                                bit_index<=bit_index + 3'd1;
                         end
                         else
-                            tick_count<=tick_count + 1;
+                            tick_count<=tick_count + 4'd1;
                     end
                 end
 
@@ -85,7 +85,7 @@ module uart_rx(
                             state<=IDLE;
                         end
                         else
-                            tick_count<= tick_count + 1;
+                            tick_count<= tick_count + 4'd1;
                     end
                 end
             endcase
