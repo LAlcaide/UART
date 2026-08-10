@@ -57,13 +57,13 @@ The receiver employs **16× oversampling** with start-bit confirmation for robus
 
 # Supported Baud Rates
 
-| Baud Rate |
-|-----------:|
-| 9600 |
-| 19200 |
-| 38400 |
-| 57600 |
-| 115200 |
+| Baud Rate | Divider (50MHz sys clk, 16x oversample) | Measured error |
+|----------:|:----------------------------------------:|:---------------:|
+| 9600      | 326 | ~0.15% |
+| 19200     | 163 | ~0.15% |
+| 38400     | 81  | ~0.47% |
+| 57600     | 54  | ~0.46% |
+| 115200    | 27  | ~0.47% |
 
 ---
 
