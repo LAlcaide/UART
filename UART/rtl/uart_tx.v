@@ -1,10 +1,9 @@
 `default_nettype none
 module uart_tx(
-    input  wire       clk, reset, baud_tick,
+    input  wire clk, reset, baud_tick,
     input  wire [7:0] data,
-    input  wire       tx_start,
-    output reg        tx,
-    output reg        tx_busy
+    input  wire tx_start,
+    output reg  tx, tx_busy
 );
 
   reg [2:0] bit_index;
