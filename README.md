@@ -70,12 +70,12 @@ The receiver employs **16× oversampling** with start-bit confirmation for robus
 # System Architecture
 
 ```text
-                           uart_top
-                              |
-      +------------+----------+----------+------------+------------+
-      |            |          |          |            |            |
-      v            v          v          v            v            v
- keypad_scanner  baud_parser  controller  baud_generator  uart_rx   uart_tx
+                             uart_top
+                                |
+      +-------------+------------+------------+-------------+---------+
+      |             |            |            |             |         |
+      v             v            v            v             v         v
+keypad_scanner  baud_parser  controller  baud_generator  uart_rx   uart_tx
       |
       v
   debounce
