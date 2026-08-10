@@ -71,24 +71,14 @@ The receiver employs **16× oversampling** with start-bit confirmation for robus
 
 ```text
                    uart_top
-                      │
-      ┌───────────────┼───────────────┐
-      │               │               │
-      ▼               ▼               ▼
-keypad_scanner    controller      uart_rx
-      │               │               │
-      ▼               ▼               ▼
- debounce      baud_generator    received byte
-      │               │               │
-      ▼               │               │
- baud_parser          │               │
-      │               │               │
-      └──────────────►│               │
-                      ▼               │
-                 active_baud          │
-                      │               │
-                      └──────────────►uart_tx
-                                     (echo)
+                              |
+      +------------+----------+----------+------------+------------+
+      |            |          |          |            |            |
+      v            v          v          v            v            v
+ keypad_scanner  baud_parser  controller  baud_generator  uart_rx   uart_tx
+      |
+      v
+  debounce
 ```
 
 ---
