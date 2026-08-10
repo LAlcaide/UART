@@ -146,14 +146,14 @@ Representative verification waveforms are available in the **waveforms/** direct
 
 | Module | Waveform |
 |---------|----------|
-| Debounce | ![](waveforms/debounce_waveform.png) |
-| Keypad Scanner | ![](waveforms/keypad_scanner_waveform.png) |
-| Baud Parser | ![](waveforms/baud_parser_waveform.png) |
-| Controller | ![](waveforms/controller_waveform.png) |
-| Baud Generator | ![](waveforms/baud_generator_waveform.png) |
-| UART TX | ![](waveforms/uart_tx_waveform.png) |
-| UART RX | ![](waveforms/uart_rx_waveform.png) |
-| UART Top | ![](waveforms/uart_top_waveform.png) |
+| Debounce | ![](UART/waveforms/debounce_waveform.png) |
+| Keypad Scanner | ![](UART/waveforms/keypad_scanner_waveform.png) |
+| Baud Parser | ![](UART/waveforms/baud_parser_waveform.png) |
+| Controller | ![](UART/waveforms/controller_waveform.png) |
+| Baud Generator | ![](UART/waveforms/baud_generator_waveform.png) |
+| UART TX | ![](UART/waveforms/uart_tx_waveform.png) |
+| UART RX | ![](UART/waveforms/uart_rx_waveform.png) |
+| UART Top | ![](UART/waveforms/uart_top_waveform.png) |
 
 ---
 
