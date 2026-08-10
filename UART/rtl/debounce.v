@@ -5,7 +5,6 @@ input wire [3:0] key,
 output reg key_valid,
 output reg [3:0] key_out
 );
-  
   reg [3:0] last_key;
   reg [18:0] counter;
   reg debounced;   
@@ -23,7 +22,7 @@ output reg [3:0] key_out
           counter <= 0;
           debounced <= 0;
         end 
-        else if(!debounced) begin
+        else if (!debounced) begin
           if(counter >= DEBOUNCE_TIME-1) begin
             key_out <= key;
             key_valid <= 1;
@@ -31,7 +30,7 @@ output reg [3:0] key_out
             counter <= 0;
           end
           else
-            counter<=counter+1;
+            counter<=counter+19'd1;
         end
       end
   end
