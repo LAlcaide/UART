@@ -59,7 +59,7 @@ output wire [3:0] key
           settle_counter<=0;
         end
         else
-          settle_counter<=settle_counter+1;
+          settle_counter<=settle_counter+5'd1;
       end
       else begin
         sampling<=0;
@@ -115,6 +115,5 @@ output wire [3:0] key
     endcase
   end
 endmodule
-
 
 
