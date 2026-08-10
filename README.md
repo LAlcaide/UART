@@ -103,15 +103,15 @@ uart_top
 # RTL Modules
 
 | Module | Description |
-|---------|-------------|
-| `keypad_scanner` | Scans the 4×4 keypad and decodes key presses |
-| `debounce` | Removes switch bounce and generates a single valid key pulse |
-| `baud_parser` | Validates keypad input and converts it into a supported baud-rate selection |
-| `controller` | Defers baud-rate updates until the transmitter is idle |
-| `baud_generator` | Generates 16× oversampling baud ticks |
-| `uart_tx` | UART transmitter finite-state machine |
-| `uart_rx` | UART receiver with 16× oversampling and frame-error detection |
-| `uart_top` | Top-level integration module |
+|---|---|
+| `debounce` | Debounces a raw key-press signal, producing a single clean pulse per press |
+| `keypad_scanner` | Scans the 4x4 matrix keypad using synchronized, settle-timed column scanning; maps detected presses to key values via a lookup table |
+| `baud_parser` | Accumulates typed digits, supports backspace, and validates the entered sequence against the five supported baud rates on Enter |
+| `controller` | Gates baud rate changes so a new rate only takes effect once any in-progress transmission completes (deferred commit, last-one-wins) |
+| `baud_generator` | Generates 16x-oversampled baud timing ticks from a runtime-selected divider |
+| `uart_tx` | UART transmitter: 8N1 framing, LSB-first |
+| `uart_rx` | UART receiver: 16x oversampled bit-center sampling, start-bit glitch rejection, framing-error detection |
+| `uart_top` | Top-level integration, including loopback wiring |
 
 ---
 
