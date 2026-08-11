@@ -202,6 +202,24 @@ The UART subsystem was successfully:
 
 ---
 
+## Bugs Found and Fixed
+
+Each of these was found through careful waveform or transcript tracing during verification, not caught by inspection alone. Documenting them here because the process of finding them is as representative of the engineering work as the final code.
+
+- **`debounce`** — an early version let its internal counter keep incrementing after the debounce threshold was reached, since the guard only checked part of the condition. Fixed by gating the entire counting branch on whether debounce had already completed.
+
+- **`keypad_scanner` — same-cycle write race** — `key_held` was written in two places within one always-block: once when a key was detected, once at the column-scan wrap. When the pressed key was on the last-scanned column, both writes landed in the same clock cycle, and the wrap's write silently overwrote the detection — permanently dropping every press on that one column. Found by testing each column individually rather than assuming symmetry across columns, and confirmed fixed by re-running the same waveform test.
+
+- **`keypad_scanner` — row polarity** — an early row-detection implementation assumed active-high row reads; the actual keypad wiring is active-low (a pressed key pulls its row line to 0, not 1). Traced through the physical pull-up/switch circuit to confirm the correct polarity before fixing the priority-encoding logic.
+
+- **Timing counters — off-by-one thresholds** — several counters (the keypad settle counter, the baud tick counter) initially compared against the raw threshold instead of `threshold - 1`, adding one extra clock cycle to every timing period. Fixed by tracing each counter's value cycle-by-cycle against the intended fire point, and re-verified against analytically calculated divider values in a self-checking testbench.
+
+- **`uart_rx` — stuck-state risk** — the original STOP-state logic only transitioned back to `IDLE` when the stop bit was valid, meaning a framing error (missing stop bit) would leave the receiver permanently stuck, unable to receive anything else without an external reset. Fixed by making the state transition unconditional on the 16-tick timeout, with the stop-bit check only deciding whether to report a valid byte or a `frame_error` — never whether to advance the state machine. Verified by deliberately sending a malformed frame and confirming the receiver correctly recovered and decoded the next, valid frame immediately after.
+
+- **Top-level integration — static array bounds** — Quartus's static elaboration flagged an out-of-range array access in `baud_parser`'s digit-clearing loop that ModelSim did not catch, because the loop bound depended on a runtime variable (`digit_count`) that Quartus could not statically prove stayed within range, even though the surrounding logic guaranteed it at runtime. Fixed by making the loop bound a literal constant matching the array's declared size, with the runtime check moved inside the loop body — a fix driven by understanding *why* two different tools disagreed on the same code, not just satisfying the error message.
+
+---
+
 # Skills Demonstrated
 
 - Verilog HDL
