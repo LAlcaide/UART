@@ -1,0 +1,17 @@
+{
+    "modules": {
+        "uart_top": {
+            "passed": 5,
+            "failed": 0,
+            "total": 5,
+            "success_rate": 100.0,
+            "failed_tests": []
+        }
+    },
+    "overall": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "success_rate": 100.0
+    }
+}
