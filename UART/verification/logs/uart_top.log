@@ -1,4 +1,3 @@
-restart
 run -all
 # PASS Baud Parser 9600
 # PASS UART TX a5
