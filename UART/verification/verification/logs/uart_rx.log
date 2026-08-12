@@ -1,0 +1,6 @@
+run -all
+# PASS RX Valid Frame
+# PASS UART RX Frame Error
+# PASS UART RX Recovery
+# Break in Module uart_rx_tb at C:/altera/13.0sp1/UART/uart_rx_tb.v line 138
+transcript off

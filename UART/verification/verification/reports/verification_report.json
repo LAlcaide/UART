@@ -1,0 +1,66 @@
+{
+    "modules": {
+        "baud_generator": {
+            "passed": 5,
+            "failed": 0,
+            "total": 5,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "baud_parser": {
+            "passed": 8,
+            "failed": 0,
+            "total": 8,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "controller": {
+            "passed": 4,
+            "failed": 0,
+            "total": 4,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "debounce": {
+            "passed": 4,
+            "failed": 0,
+            "total": 4,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "keypad_scanner": {
+            "passed": 5,
+            "failed": 0,
+            "total": 5,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "uart_rx": {
+            "passed": 3,
+            "failed": 0,
+            "total": 3,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "uart_top": {
+            "passed": 5,
+            "failed": 0,
+            "total": 5,
+            "success_rate": 100.0,
+            "failed_tests": []
+        },
+        "uart_tx": {
+            "passed": 4,
+            "failed": 0,
+            "total": 4,
+            "success_rate": 100.0,
+            "failed_tests": []
+        }
+    },
+    "overall": {
+        "passed": 38,
+        "failed": 0,
+        "total": 38,
+        "success_rate": 100.0
+    }
+}
