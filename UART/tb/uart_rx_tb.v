@@ -7,7 +7,8 @@ module uart_rx_tb;
     wire [7:0] data;
     wire data_valid;
     wire frame_error;
-
+    
+    reg [7:0] sample_data;
     uart_rx DUT (
         .clk(clk), .reset(reset),
         .baud_tick(baud_tick),
@@ -82,7 +83,9 @@ module uart_rx_tb;
             hold_bit(1);               
         end
     endtask
-
+    
+    integer j;
+    
     initial begin
         clk   = 0;
         reset = 1;
@@ -93,15 +96,21 @@ module uart_rx_tb;
         reset = 0;
         repeat(5) @(posedge clk);
 
-        // Good frame
-        send_byte(8'b10110101);
+        //100 Good frames
+        
+        for(j=0; j < 100; j = j + 1) begin
+          sample_data = $urandom_range(0, 255);
+          send_byte(sample_data);
 
-        check(
-          data_valid_count && data === 8'b10110101,
-          "RX Valid Frame"
-        );
-        data_valid_count = 0;
-        frame_error_count = 0;
+          check(
+            data_valid_count && sample_data === data,
+            "RX Valid Frame"
+          );
+          $display("Testing UART RX with data = %h", sample_data);
+          data_valid_count = 0;
+          frame_error_count = 0;
+          
+        end
 
         // Bad frame: stop bit held low instead of high
         rx = 0;
@@ -115,7 +124,7 @@ module uart_rx_tb;
         repeat(10) @(posedge clk);
         
         check(
-          frame_error_count && data === 8'b10110101,
+          frame_error_count && sample_data === data,
           "UART RX Frame Error"
         );
         data_valid_count = 0;
@@ -139,3 +148,4 @@ module uart_rx_tb;
     end
 
 endmodule
+
