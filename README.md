@@ -245,7 +245,12 @@ Each of these was found through careful waveform or transcript tracing during ve
 - Clock Domain Synchronization
 - Modular FPGA Design
 - Functional Verification
+- Self-Checking Testbenches
+- Randomized Verification
 - ModelSim Simulation
+- Python Verification Automation
+- Test Log Parsing
+- JSON / CSV / HTML Reporting
 - Intel Quartus Prime
 - Static Timing Analysis (STA)
 
