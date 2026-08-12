@@ -54,6 +54,46 @@ module uart_top_tb;
             repeat(BIT_PERIOD_CYCLES) @(posedge clk);
         end
     endtask
+    
+    task check;
+      input condition;
+      input [255:0] test_name;
+      begin
+        if (condition)
+            $display("PASS %0s", test_name);
+        else
+            $display("FAIL %0s", test_name);
+      end
+    endtask
+    
+    task check_uart_tx;
+      input [7:0] expected;
+      reg [7:0] received;
+      integer i;
+      begin
+        received = 0;
+
+        // Wait for start bit
+        @(negedge tx);
+
+        // Move to middle of first data bit
+        repeat(BIT_PERIOD_CYCLES + BIT_PERIOD_CYCLES/2)
+            @(posedge clk);
+
+        // Sample 8 data bits
+        for(i = 0; i < 8; i = i + 1) begin
+            received[i] = tx;
+            repeat(BIT_PERIOD_CYCLES)
+                @(posedge clk);
+        end
+
+        // Check stop bit
+        if(tx == 1'b1 && received == expected)
+            $display("PASS UART TX %h", expected);
+        else
+            $display("FAIL UART TX expected=%h received=%h", expected, received);
+      end
+  endtask
 
     initial begin
         clk   = 0;
@@ -71,11 +111,35 @@ module uart_top_tb;
         hold_press(4'b1101, 4'b0111, 3);
 
         repeat(2000) @(posedge clk);
+        
+        check(
+          DUT.baud_value == 3'd0,
+          "Baud Parser 9600"
+        );
 
         // Send a UART byte on rx, check it echoes on tx
-        send_uart_byte(8'hA5);
+        
+        fork
+          send_uart_byte(8'hA5);
+          check_uart_tx(8'hA5);
+        join
         repeat(BIT_PERIOD_CYCLES*11) @(posedge clk);
+        
+        check(
+          DUT.rx_data == 8'hA5,
+          "UART RX a5"
+          );
+          
+          check(
+            parser_error == 1'b0,
+            "Parser Error"
+          );
 
+        check(
+            rx_frame_error == 1'b0,
+            "Frame Error"
+        );
+          
         $stop;
     end
 endmodule

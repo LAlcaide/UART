@@ -16,8 +16,31 @@ module uart_rx_tb;
         .data_valid(data_valid),
         .frame_error(frame_error)
     );
+    
+    task check;
+      input condition;
+      input [255:0] test_name;
+      begin
+        if (condition)
+            $display("PASS %0s", test_name);
+        else
+            $display("FAIL %0s", test_name);
+      end
+    endtask
 
     always #10 clk = ~clk;
+    
+    integer data_valid_count, frame_error_count;
+
+    always @(posedge clk) begin
+      if (data_valid)
+        data_valid_count = 1;
+    end
+    
+    always @(posedge clk) begin
+      if (frame_error)
+        frame_error_count = 1;
+    end
 
     // Free-running baud_tick, one pulse every 4 clk cycles
     reg [1:0] tick_div;
@@ -64,15 +87,21 @@ module uart_rx_tb;
         clk   = 0;
         reset = 1;
         rx    = 1;
+        data_valid_count = 0;
+        frame_error_count = 0;
         repeat(5) @(posedge clk);
         reset = 0;
         repeat(5) @(posedge clk);
 
         // Good frame
         send_byte(8'b10110101);
-        repeat(5) @(posedge clk);
-        if(data_valid !== 1'b0 || data !== 8'b10110101)
-            $display("checking good frame result below via monitor");
+
+        check(
+          data_valid_count && data === 8'b10110101,
+          "RX Valid Frame"
+        );
+        data_valid_count = 0;
+        frame_error_count = 0;
 
         // Bad frame: stop bit held low instead of high
         rx = 0;
@@ -85,6 +114,13 @@ module uart_rx_tb;
         hold_bit(0);
         repeat(10) @(posedge clk);
         
+        check(
+          frame_error_count && data === 8'b10110101,
+          "UART RX Frame Error"
+        );
+        data_valid_count = 0;
+        frame_error_count = 0;
+        
         rx = 1;
         
         @ (posedge clk);
@@ -92,14 +128,14 @@ module uart_rx_tb;
         // Confirm receiver recovered
         send_byte(8'h16);
         repeat(100) @(posedge clk);
-
+        
+        check(
+          data_valid_count && data === 8'h16,
+          "UART RX Recovery"
+        );
+        data_valid_count = 0;
+        frame_error_count = 0;
         $stop;
     end
-
-    always @(posedge data_valid)
-        $display("[%0t] data_valid: received = %b", $time, data);
-
-    always @(posedge frame_error)
-        $display("[%0t] frame_error pulsed", $time);
 
 endmodule

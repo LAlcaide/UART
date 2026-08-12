@@ -12,6 +12,17 @@ module controller_tb;
         .tx_busy(tx_busy),
         .active_baud(active_baud)
     );
+    
+    task check;
+      input condition;
+      input [255:0] test_name;
+      begin
+        if (condition)
+            $display("PASS %0s", test_name);
+        else
+            $display("FAIL %0s", test_name);
+      end
+    endtask
 
     always #10 clk = ~clk;
 
@@ -27,10 +38,10 @@ module controller_tb;
         // Test Case 1: idle, change should apply immediately
         baud_value = 3'd1;
         repeat (2) @(posedge clk);
-        if(active_baud !== 3'd1)
-            $display("FAIL case1: expected active_baud=1, got %0d", active_baud);
-        else
-            $display("PASS case1: immediate apply while idle, active_baud=%0d", active_baud);
+        check(
+          active_baud === 3'd1,
+          "Change active_baud"
+        );
 
         repeat(3) @(posedge clk);
 
@@ -39,27 +50,27 @@ module controller_tb;
         @(posedge clk);
         baud_value = 3'd3;
         repeat (2) @(posedge clk);
-        if(active_baud !== 3'd1)
-            $display("FAIL case2: expected active_baud still=1 (deferred), got %0d", active_baud);
-        else
-            $display("PASS case2: change correctly deferred while busy, active_baud=%0d", active_baud);
+        check(
+          active_baud === 3'd1,
+          "Change to active_baud deffered"
+        );
 
         // Test Case 2b: multiple changes while still busy
         @(posedge clk);
         baud_value = 3'd4;
         repeat (2) @(posedge clk);
-        if(active_baud !== 3'd1)
-            $display("FAIL case2b: active_baud changed too early, got %0d", active_baud);
-        else
-            $display("PASS case2b: still deferred after second change, active_baud=%0d", active_baud);
-
+        check(
+          active_baud === 3'd1,
+          "Change still deffered"
+        );
+        
         // Test Case 3: tx_busy drops, pending value applies
         tx_busy = 0;
         repeat (2) @(posedge clk);
-        if(active_baud !== 3'd4)
-            $display("FAIL case3: expected active_baud=4 (last-one-wins), got %0d", active_baud);
-        else
-            $display("PASS case3: last-one-wins applied correctly, active_baud=%0d", active_baud);
+        check(
+          active_baud === 3'd4,
+          "Change to active_baud applied"
+        );
 
         repeat(5) @(posedge clk);
         $stop;

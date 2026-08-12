@@ -20,8 +20,25 @@ module keypad_scanner_tb;
     );
 
     defparam DUT.DEBOUNCE_INST.DEBOUNCE_TIME = 50;
+    
+    task check;
+      input condition;
+      input [255:0] test_name;
+      begin
+        if (condition)
+            $display("PASS %0s", test_name);
+        else
+            $display("FAIL %0s", test_name);
+      end
+    endtask
 
     always #10 clk = ~clk;
+    
+    integer valid_count;
+    always @(posedge clk) begin
+      if (key_valid)
+        valid_count = 1;
+    end
 
     initial begin
         clk   = 0;
@@ -29,6 +46,7 @@ module keypad_scanner_tb;
         R     = 4'b1111;
         repeat (5) @(posedge clk);
         reset = 0;
+        valid_count = 0;
 
         //Short press key '1'  (Column 0, Row 0)
         wait(C == 4'b1110);
@@ -37,6 +55,12 @@ module keypad_scanner_tb;
         wait(C == 4'b1101);
         R = 4'b1111;
         repeat (50) @(posedge clk);
+        
+        check(
+          !valid_count && key != 4'd1,
+          "Short Press Rejected"
+        );
+        valid_count = 0;
 
         // Press key '5' (Column 1, Row 1)
         for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
@@ -48,6 +72,12 @@ module keypad_scanner_tb;
         end
         repeat (50) @(posedge clk);
         
+        check(
+          valid_count && key == 4'd5,
+          "Key 5 Detection"
+        );
+        valid_count = 0;
+        
         // Press key '5' again (Column 1, Row 1)
         for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
           wait(C == 4'b1101);
@@ -57,6 +87,12 @@ module keypad_scanner_tb;
           R = 4'b1111;
         end
         repeat (50) @(posedge clk);
+        
+        check(
+          valid_count && key == 4'd5,
+          "Repeated Key 5 Detection"
+        );
+        valid_count = 0;
 
         // Press key '9' (Column 2, Row 2)
         for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
@@ -67,6 +103,12 @@ module keypad_scanner_tb;
           R = 4'b1111;
         end
         repeat (50) @(posedge clk);
+        
+        check(
+          valid_count && key == 4'd9,
+          "Key 9 Detection"
+        );
+        valid_count = 0;
 
         // Press key 'D' (Column 3, Row 3)
         for(i = 0; i<=DUT.DEBOUNCE_INST.DEBOUNCE_TIME/(DUT.settle_cycles * 4); i = i+1) begin
@@ -77,7 +119,13 @@ module keypad_scanner_tb;
           R = 4'b1111;
         end
         repeat (50) @(posedge clk);
+        
+        check(
+          valid_count && key == 4'd15,
+          "Key D Detection"
+        );
+        valid_count = 0;
 
-        $stop;
+         $stop;
     end
 endmodule

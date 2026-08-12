@@ -18,6 +18,17 @@ module uart_tx_tb;
         .tx(tx),
         .tx_busy(tx_busy)
     );
+    
+    task check;
+      input condition;
+      input [255:0] test_name;
+      begin
+        if (condition)
+            $display("PASS %0s", test_name);
+        else
+            $display("FAIL %0s", test_name);
+      end
+    endtask
 
     always #10 clk = ~clk;
 
@@ -67,30 +78,35 @@ module uart_tx_tb;
 
         // Check start bit
         wait_one_bit;
-        if(tx !== 1'b0)
-            $display("FAIL: start bit expected 0, got %b", tx);
-        else
-            $display("PASS: start bit = 0");
+        check(
+          tx === 1'b0,
+          "UART TX Start Bit"
+        );
 
         // Sample each of the 8 data bits, LSB first
         for(i = 0; i < 8; i = i + 1) begin
             wait_one_bit;
             received[i] = tx;
-            $display("bit %0d received = %b (expected %b)", i, tx, data[i]);
         end
-
+        
+        check(
+          tx_busy,
+          "UART TX Busy"
+        );
+        
         // Check stop bit
+        
         wait_one_bit;
-        if(tx !== 1'b1)
-            $display("FAIL: stop bit expected 1, got %b", tx);
-        else
-            $display("PASS: stop bit = 1");
-
-        // Final check
-        if(received === data)
-            $display("PASS: full byte match ? sent %b, received %b", data, received);
-        else
-            $display("FAIL: byte mismatch ? sent %b, received %b", data, received);
+        check(
+          tx === 1'b1,
+          "UART TX Stop Bit"
+        );
+        
+        //Final check
+        check(
+          received === data,
+          "UART TX Data Byte"
+        );
 
         repeat(20) @(posedge clk);
         $stop;
