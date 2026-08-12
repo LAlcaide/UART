@@ -1,7 +1,0 @@
-run -all
-# PASS Change active_baud
-# PASS Change to active_baud deffered
-# PASS Change still deffered
-# PASS Change to active_baud applied
-# Break in Module controller_tb at C:/altera/13.0sp1/UART/controller_tb.v line 76
-transcript off

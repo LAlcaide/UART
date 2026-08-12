@@ -1,8 +1,0 @@
-run -all
-# PASS Baud 115200 Generation
-# PASS Baud 9600 Generation
-# PASS Baud 19200 Generation
-# PASS Baud 38400 Generation
-# PASS Baud 57600 Generation
-# Break in Module baud_generator_tb at C:/altera/13.0sp1/UART/baud_generator_tb.v line 93
-transcript off

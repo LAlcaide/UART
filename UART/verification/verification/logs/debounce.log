@@ -1,7 +1,0 @@
-run -all
-# PASS Key 5 Debounce
-# PASS Key 8 Debounce
-# PASS Key 3 Debounce
-# PASS Key 7 short press rejected
-# Break in Module debounce_tb at C:/altera/13.0sp1/UART/debounce_tb.v line 127
-transcript off

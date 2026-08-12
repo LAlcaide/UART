@@ -1,8 +1,0 @@
-run -all
-# PASS Short Press Rejected
-# PASS Key 5 Detection
-# PASS Repeated Key 5 Detection
-# PASS Key 9 Detection
-# PASS Key D Detection
-# Break in Module keypad_scanner_tb at C:/altera/13.0sp1/UART/keypad_scanner_tb.v line 129
-transcript off

@@ -1,9 +1,0 @@
-restart
-run -all
-# PASS Baud Parser 9600
-# PASS UART TX a5
-# PASS UART RX a5
-# PASS Parser Error
-# PASS Frame Error
-# Break in Module uart_top_tb at C:/altera/13.0sp1/UART/uart_top_tb.v line 143
-transcript off
