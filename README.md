@@ -119,7 +119,11 @@ uart_top
 
 The design follows a module-by-module verification methodology.
 
-Each RTL module includes an independent ModelSim testbench verifying both normal operation and edge cases.
+Each RTL module includes an independent ModelSim testbench verifying normal operation, edge cases, and targeted failure conditions.
+
+For the UART datapath, the testbenches also support randomized stimulus. In addition to directed test vectors for important patterns and boundary conditions, randomized 8-bit data values can exercise a wider range of UART TX/RX behavior.
+
+ModelSim transcripts use standardized `PASS` / `FAIL` messages. A Python verification script parses one or more ModelSim log files and generates JSON, CSV, and HTML reports, including pass/fail counts, success rate, and failed test names.
 
 | RTL Module | Testbench | Status |
 |------------|-----------|--------|
@@ -170,11 +174,20 @@ The design was successfully synthesized, placed-and-routed, and timing-verified 
 ```text
 UART/
 │
-├── rtl/                 # Verilog HDL source files
-├── tb/                  # ModelSim testbenches
-├── waveforms/           # Verification waveform screenshots
-├── docs/                # Documentation
-├── UART.sdc             # Timing constraints
+├── rtl/                         # Verilog HDL source files
+│
+├── tb/                          # ModelSim testbenches
+│
+├── scripts/                     # Python verification/reporting scripts
+│
+├── verification/
+│   ├── logs/                    # ModelSim simulation logs
+│   ├── reports/                 # Generated JSON, CSV, and HTML reports
+│   └── waveforms/               # Verification waveform screenshots
+│
+├── docs/                        # Project documentation
+│
+├── UART.sdc                     # Timing constraints
 ├── LICENSE
 └── README.md
 ```
