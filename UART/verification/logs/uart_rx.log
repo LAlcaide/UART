@@ -1,0 +1,205 @@
+run -all
+# PASS RX Valid Frame
+# Testing UART RX with data = 73
+# PASS RX Valid Frame
+# Testing UART RX with data = 26
+# PASS RX Valid Frame
+# Testing UART RX with data = d2
+# PASS RX Valid Frame
+# Testing UART RX with data = 11
+# PASS RX Valid Frame
+# Testing UART RX with data = 2b
+# PASS RX Valid Frame
+# Testing UART RX with data = 1d
+# PASS RX Valid Frame
+# Testing UART RX with data = 97
+# PASS RX Valid Frame
+# Testing UART RX with data = 8c
+# PASS RX Valid Frame
+# Testing UART RX with data = 40
+# PASS RX Valid Frame
+# Testing UART RX with data = e2
+# PASS RX Valid Frame
+# Testing UART RX with data = 14
+# PASS RX Valid Frame
+# Testing UART RX with data = 50
+# PASS RX Valid Frame
+# Testing UART RX with data = 94
+# PASS RX Valid Frame
+# Testing UART RX with data = 2c
+# PASS RX Valid Frame
+# Testing UART RX with data = fe
+# PASS RX Valid Frame
+# Testing UART RX with data = f9
+# PASS RX Valid Frame
+# Testing UART RX with data = 09
+# PASS RX Valid Frame
+# Testing UART RX with data = be
+# PASS RX Valid Frame
+# Testing UART RX with data = fc
+# PASS RX Valid Frame
+# Testing UART RX with data = d4
+# PASS RX Valid Frame
+# Testing UART RX with data = 1e
+# PASS RX Valid Frame
+# Testing UART RX with data = 4a
+# PASS RX Valid Frame
+# Testing UART RX with data = dd
+# PASS RX Valid Frame
+# Testing UART RX with data = 71
+# PASS RX Valid Frame
+# Testing UART RX with data = c0
+# PASS RX Valid Frame
+# Testing UART RX with data = b4
+# PASS RX Valid Frame
+# Testing UART RX with data = ad
+# PASS RX Valid Frame
+# Testing UART RX with data = e2
+# PASS RX Valid Frame
+# Testing UART RX with data = 33
+# PASS RX Valid Frame
+# Testing UART RX with data = a3
+# PASS RX Valid Frame
+# Testing UART RX with data = 4b
+# PASS RX Valid Frame
+# Testing UART RX with data = 65
+# PASS RX Valid Frame
+# Testing UART RX with data = 2c
+# PASS RX Valid Frame
+# Testing UART RX with data = aa
+# PASS RX Valid Frame
+# Testing UART RX with data = ea
+# PASS RX Valid Frame
+# Testing UART RX with data = 17
+# PASS RX Valid Frame
+# Testing UART RX with data = 3c
+# PASS RX Valid Frame
+# Testing UART RX with data = 61
+# PASS RX Valid Frame
+# Testing UART RX with data = 82
+# PASS RX Valid Frame
+# Testing UART RX with data = 79
+# PASS RX Valid Frame
+# Testing UART RX with data = 3a
+# PASS RX Valid Frame
+# Testing UART RX with data = 16
+# PASS RX Valid Frame
+# Testing UART RX with data = ad
+# PASS RX Valid Frame
+# Testing UART RX with data = 0f
+# PASS RX Valid Frame
+# Testing UART RX with data = 85
+# PASS RX Valid Frame
+# Testing UART RX with data = 35
+# PASS RX Valid Frame
+# Testing UART RX with data = dd
+# PASS RX Valid Frame
+# Testing UART RX with data = aa
+# PASS RX Valid Frame
+# Testing UART RX with data = ba
+# PASS RX Valid Frame
+# Testing UART RX with data = 22
+# PASS RX Valid Frame
+# Testing UART RX with data = a4
+# PASS RX Valid Frame
+# Testing UART RX with data = 01
+# PASS RX Valid Frame
+# Testing UART RX with data = de
+# PASS RX Valid Frame
+# Testing UART RX with data = ee
+# PASS RX Valid Frame
+# Testing UART RX with data = bc
+# PASS RX Valid Frame
+# Testing UART RX with data = 4f
+# PASS RX Valid Frame
+# Testing UART RX with data = 55
+# PASS RX Valid Frame
+# Testing UART RX with data = 99
+# PASS RX Valid Frame
+# Testing UART RX with data = d2
+# PASS RX Valid Frame
+# Testing UART RX with data = 9f
+# PASS RX Valid Frame
+# Testing UART RX with data = 8e
+# PASS RX Valid Frame
+# Testing UART RX with data = bd
+# PASS RX Valid Frame
+# Testing UART RX with data = 1a
+# PASS RX Valid Frame
+# Testing UART RX with data = ae
+# PASS RX Valid Frame
+# Testing UART RX with data = e1
+# PASS RX Valid Frame
+# Testing UART RX with data = a9
+# PASS RX Valid Frame
+# Testing UART RX with data = ff
+# PASS RX Valid Frame
+# Testing UART RX with data = 13
+# PASS RX Valid Frame
+# Testing UART RX with data = 5a
+# PASS RX Valid Frame
+# Testing UART RX with data = 9f
+# PASS RX Valid Frame
+# Testing UART RX with data = 51
+# PASS RX Valid Frame
+# Testing UART RX with data = 8a
+# PASS RX Valid Frame
+# Testing UART RX with data = 35
+# PASS RX Valid Frame
+# Testing UART RX with data = e3
+# PASS RX Valid Frame
+# Testing UART RX with data = 5d
+# PASS RX Valid Frame
+# Testing UART RX with data = 83
+# PASS RX Valid Frame
+# Testing UART RX with data = 91
+# PASS RX Valid Frame
+# Testing UART RX with data = 10
+# PASS RX Valid Frame
+# Testing UART RX with data = 08
+# PASS RX Valid Frame
+# Testing UART RX with data = a1
+# PASS RX Valid Frame
+# Testing UART RX with data = a0
+# PASS RX Valid Frame
+# Testing UART RX with data = fa
+# PASS RX Valid Frame
+# Testing UART RX with data = f6
+# PASS RX Valid Frame
+# Testing UART RX with data = 8a
+# PASS RX Valid Frame
+# Testing UART RX with data = d4
+# PASS RX Valid Frame
+# Testing UART RX with data = a0
+# PASS RX Valid Frame
+# Testing UART RX with data = fe
+# PASS RX Valid Frame
+# Testing UART RX with data = 73
+# PASS RX Valid Frame
+# Testing UART RX with data = 71
+# PASS RX Valid Frame
+# Testing UART RX with data = c0
+# PASS RX Valid Frame
+# Testing UART RX with data = 39
+# PASS RX Valid Frame
+# Testing UART RX with data = a9
+# PASS RX Valid Frame
+# Testing UART RX with data = 7b
+# PASS RX Valid Frame
+# Testing UART RX with data = 25
+# PASS RX Valid Frame
+# Testing UART RX with data = 9d
+# PASS RX Valid Frame
+# Testing UART RX with data = 45
+# PASS RX Valid Frame
+# Testing UART RX with data = e9
+# PASS RX Valid Frame
+# Testing UART RX with data = 0c
+# PASS RX Valid Frame
+# Testing UART RX with data = 8b
+# PASS RX Valid Frame
+# Testing UART RX with data = 9d
+# PASS UART RX Frame Error
+# PASS UART RX Recovery
+# Break in Module uart_rx_tb at C:/altera/13.0sp1/UART/uart_rx_tb.v line 147
+transcript off

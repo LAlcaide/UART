@@ -1,0 +1,11 @@
+run -all
+# PASS Baud Parser 9600
+# PASS Baud Parser 19200
+# PASS Baud Parser 38400
+# PASS Baud Parser 57600
+# PASS Baud Parser 115200
+# PASS Baud Parser Invalid Input
+# PASS Baud Parser Backspace
+# PASS Baud Parser Empty Input Error
+# Break in Module baud_parser_tb at C:/altera/13.0sp1/UART/baud_parser_tb.v line 131
+transcript off

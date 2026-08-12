@@ -1,0 +1,7 @@
+run -all
+# PASS UART TX Start Bit
+# PASS UART TX Busy
+# PASS UART TX Stop Bit
+# PASS UART TX Data Byte
+# Break in Module uart_tx_tb at C:/altera/13.0sp1/UART/uart_tx_tb.v line 112
+transcript off
