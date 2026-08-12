@@ -1,4 +1,11 @@
 Module,Passed,Failed,Total,Success Rate
+baud_generator,5,0,5,100.0%
+baud_parser,8,0,8,100.0%
+controller,4,0,4,100.0%
+debounce,4,0,4,100.0%
+keypad_scanner,5,0,5,100.0%
+uart_rx,102,0,102,100.0%
 uart_top,5,0,5,100.0%
+uart_tx,4,0,4,100.0%
 
-OVERALL,5,0,5,100.0%
+OVERALL,137,0,137,100.0%
